@@ -3,62 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using Core.DataAccess.EntityFramework;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfCarDal:ICarDal
+    public class EfCarDal:EfEntityRepositoryBase<Car,ReCapProjectContext>,ICarDal
     {
-        public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
+        public List<CarDetailDto> GetCarDetails()
         {
             using (ReCapProjectContext context = new ReCapProjectContext())
             {
-                return filter == null
-                    ? context.Set<Car>().ToList()
-                    : context.Set<Car>().Where(filter).ToList();
-            }
+                var result = from p in context.Cars
+                    join c in context.Colors
+                        on p.Id equals c.ColorId
+                    join b in context.Brands
+                        on p.Id equals b.BrandId
+                    select new CarDetailDto
+                    {
+                        CarName = p.Description,
+                        Brandname = b.BrandName,
+                        ColorName = c.ColorName,
+                        DailyPrice = p.DailyPrice
 
-        }
-
-        public Car Get(Expression<Func<Car, bool>> filter)
-        {
-            using (ReCapProjectContext context = new ReCapProjectContext())
-            {
-                return context.Set<Car>().SingleOrDefault(filter);
-                //DbSet Car sınıfını yani Cars Tablosunu seç, predicate ifadeyi uygula
-                //gelen kaydı(record) döndür.
-            }
-        }
-
-        public void Add(Car entity)
-        {
-            using (ReCapProjectContext context=new ReCapProjectContext())
-            {
-                var addedCar = context.Entry(entity);
-                addedCar.State = EntityState.Added;
-                context.SaveChanges();
-            }
-        }
-
-        public void Delete(Car entity)
-        {
-            using (ReCapProjectContext context = new ReCapProjectContext())
-            {
-                var deletedCar = context.Entry(entity);
-                deletedCar.State = EntityState.Deleted;
-                context.SaveChanges();
-            }
-        }
-
-        public void Update(Car entity)
-        {
-            using (ReCapProjectContext context = new ReCapProjectContext())
-            {
-                var updatedCar = context.Entry(entity);
-                updatedCar.State = EntityState.Modified;
-                context.SaveChanges();
+                    };
+                return result.ToList();
             }
         }
     }
