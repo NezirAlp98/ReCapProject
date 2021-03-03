@@ -3,6 +3,7 @@ using System.Threading.Channels;
 using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
+using Entities.Concrete;
 
 namespace ConsoleUI
 {
@@ -10,8 +11,36 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            CarTest();
+            //CarTest();
             //BrandTest();
+            //RentalAddMethod();
+            //Veri tabanında IDENTITY verdiğimiz değer kendi numara verir biz id tanımlamayız.
+
+            CustomerAddMethod();
+        }
+
+        private static void CustomerAddMethod()
+        {
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            var result = customerManager.Add(new Customer
+            {
+                UserId = 1,
+                CompanyName = "Nezir"
+            });
+            Console.WriteLine(result.Message);
+        }
+
+        private static void RentalAddMethod()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            var result = rentalManager.Add(new Rental
+            {
+                CarId = 3,
+                CustomerId = 1,
+                RentDate = DateTime.Now,
+                ReturnDate = DateTime.Today
+            });
+            Console.WriteLine(result.Message);
         }
 
         private static void BrandTest()
