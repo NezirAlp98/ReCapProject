@@ -30,5 +30,8 @@ namespace Business.Constants
         public static string UserDeleted = "Kullanıcı silindi";
         public static string UserUpdated = "Kullanıcı güncellendi";
         public static string BrandsListed = "Markalar listelendi";
+        public static string CarNotAvailable = "Araba bulunamadı";
+        public static string FailAddedImageLimit = "Resim limiti aşıldı";
+        public static string CarImageUpdated = "Resim güncellendi";
     }
 }
