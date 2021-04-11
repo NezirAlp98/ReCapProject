@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Business.Abstract;
-using Entities.Concrete;
+using Core.Entities.Concrete;
 
 namespace WebAPI.Controllers
 {
@@ -19,6 +19,7 @@ namespace WebAPI.Controllers
         {
             _userService = userService;
         }
+
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
@@ -41,19 +42,9 @@ namespace WebAPI.Controllers
             }
 
             return BadRequest(result);
+
         }
 
-        [HttpGet("getuserdetails")]
-        public IActionResult GetUserDetails()
-        {
-            var result = _userService.GetUserDetails();
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-
-            return BadRequest(result);
-        }
         [HttpPost("add")]
         public IActionResult Add(User user)
         {
@@ -64,8 +55,6 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-
-
         [HttpPost("delete")]
         public IActionResult Delete(User user)
         {

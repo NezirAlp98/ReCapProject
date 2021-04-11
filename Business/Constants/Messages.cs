@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Core.Entities.Concrete;
 
 namespace Business.Constants
 {
@@ -33,5 +34,13 @@ namespace Business.Constants
         public static string CarNotAvailable = "Araba bulunamadı";
         public static string FailAddedImageLimit = "Resim limiti aşıldı";
         public static string CarImageUpdated = "Resim güncellendi";
+        public static string AuthorizationDenied = "Yetkiniz yok";
+        public static string UserRegistered = "Kullanıcı kayıt oldu";
+        public static string UserNotFound = "Kullanıcı bulunamadı";
+
+        public static string PasswordError = "Şifre hatalı";
+        public static string SuccessfulLogin = "Başarılı giriş";
+        public static string UserAlreadyExists = "Kullanıcı zaten mevcut";
+        public static string AccessTokenCreated = "Token oluşturuldu";
     }
 }
