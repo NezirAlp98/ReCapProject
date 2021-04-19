@@ -6,6 +6,7 @@ using System.Text;
 using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.Business;
 using Core.Utilities.Helpers;
@@ -82,6 +83,7 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<CarImage>(_carImageDAL.Get(p => p.Id == id));
         }
+
         public IDataResult<List<CarImage>> GetAll()
         {
             return new SuccessDataResult<List<CarImage>>(_carImageDAL.GetAll());

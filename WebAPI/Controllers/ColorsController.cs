@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Business.Abstract;
+using Entities.Concrete;
 
 namespace WebAPI.Controllers
 {
@@ -35,6 +36,37 @@ namespace WebAPI.Controllers
         public IActionResult GetById(int colorId)
         {
             var result = _colorService.GetById(colorId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("add")]
+        public IActionResult Add(Color color)
+        {
+            var result = _colorService.Add(color);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpGet("delete")]
+        public IActionResult Delete(Color color)
+        {
+            var result = _colorService.Delete(color);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpGet("update")]
+        public IActionResult Update(Color color)
+        {
+            var result = _colorService.Update(color);
             if (result.Success)
             {
                 return Ok(result);

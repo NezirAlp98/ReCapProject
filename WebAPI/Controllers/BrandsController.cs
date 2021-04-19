@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Business.Abstract;
 using DataAccess.Abstract;
+using Entities.Concrete;
 
 namespace WebAPI.Controllers
 {
@@ -36,6 +37,42 @@ namespace WebAPI.Controllers
         public IActionResult GetById(int brandId)
         {
             var result = _brandService.GetById(brandId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
+        [HttpGet("add")]
+        public IActionResult Add(Brand brand)
+        {
+            var result = _brandService.Add(brand);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+
+        }
+
+        [HttpGet("delete")]
+        public IActionResult Delete(Brand brand)
+        {
+            var result = _brandService.Delete(brand);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+        [HttpGet("update")]
+        public IActionResult Update(Brand brand)
+        {
+            var result = _brandService.Update(brand);
             if (result.Success)
             {
                 return Ok(result);
