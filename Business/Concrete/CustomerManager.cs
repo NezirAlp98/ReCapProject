@@ -64,7 +64,7 @@ namespace Business.Concrete
 
         public IDataResult<List<CustomerDetailDto>> GetCustomerDetails()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<CustomerDetailDto>>(_customerDal.GetCustomerDetails(), Messages.CustomersListed);
         }
     }
 }

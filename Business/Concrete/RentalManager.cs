@@ -69,7 +69,7 @@ namespace Business.Concrete
 
         public IDataResult<List<RentalDetailDto>> GetRentalDetails()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetCarRentalDetails(), Messages.RentalListed);
         }
     }
 }
