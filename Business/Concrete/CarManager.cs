@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 using Business.Abstract;
 using Business.BusinessAspects.Autofac;
@@ -64,6 +65,11 @@ namespace Business.Concrete
         public IDataResult<List<CarDetailDto>> GetCarDetailDto()
         {
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarDetailsById(Expression<Func<Car, bool>> filter = null)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailsById(filter), "Ürünler listelendi");
         }
 
         [CacheRemoveAspect("ICarService.Get")]

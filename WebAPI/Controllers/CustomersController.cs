@@ -44,7 +44,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getcustomerdetails")]
-        public IActionResult GetustomerDetails()
+        public IActionResult GetCustomerDetails()
         {
             var result = _customerService.GetCustomerDetails();
             if (result.Success)

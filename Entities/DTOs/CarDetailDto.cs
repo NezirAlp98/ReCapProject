@@ -14,6 +14,5 @@ namespace Entities.DTOs
         public string ColorName { get; set; }
         public decimal DailyPrice { get; set; }
         public List<string> Images { get; set; }
-        public DateTime? Date { get; set; }
     }
 }
