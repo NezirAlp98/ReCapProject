@@ -50,5 +50,8 @@ namespace Business.Constants
         public static string ColorUpdated = "Renk güncellendi";
         public static string ColorDeleted = "Renk silindi";
         public static string RentalListed = "Kiralık araçlar listelendi";
+        public static string CardsListed = "Ödemeler listelendi";
+        public static string CardAdded = "Ödeme eklendi";
+        public static string CardDeleted = "Ödeme silindi";
     }
 }
